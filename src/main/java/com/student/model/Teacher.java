@@ -34,11 +34,19 @@ public class Teacher {
 		return "Teacher [name=" + name + ", age=" + age + ", subject=" + subject + "]";
 	}
 
+
+	
+	
 	public Teacher(String name, int age, String subject) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.subject = subject;
+	}
+
+	public Teacher() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }
