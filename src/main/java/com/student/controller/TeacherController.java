@@ -21,7 +21,7 @@ public class TeacherController {
 
 	}
 
-	@RequestMapping(value = "/teachers", method = RequestMethod.POST)
+	@RequestMapping(value = "/teachers",method = RequestMethod.POST)
 	public ResponseEntity<?> createteachers(@RequestBody Teacher ter) {
 		Teacher teache = new Teacher();
 		teache.setAge(ter.getAge());
@@ -29,6 +29,5 @@ public class TeacherController {
 		teache.setSubject(ter.getSubject());
 		System.out.println(ter);
 		return ResponseEntity.ok(teache);
-
 	}
 }
