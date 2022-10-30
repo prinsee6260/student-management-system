@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.model.Student;
+import com.student.repository.StudentRepository;
 @RestController
 public class StudentController {
+	private StudentRepository studentRepository;
+	
+	public StudentController(StudentRepository studentRepository) {
+		super();
+		this.studentRepository = studentRepository;
+	}
 	//getmethod
 	@RequestMapping("/students")
 	public ResponseEntity<?> GetStrudents(){
-		 List <Student> students = new ArrayList();
-		 students.add(new Student("prinsee",1234,3456));
-		 students.add(new Student("choti",2345,5674));
-			return ResponseEntity.ok(students);
+		return ResponseEntity.ok(studentRepository.findAll());
 	}
 	//post method
 	
 	@RequestMapping(value ="/students",method = RequestMethod.POST)
 	public ResponseEntity<?> createstudents (@RequestBody Student stu){
-		Student student = new Student();
-		student.setId(stu.getId());
-		student.setName(stu.getName());
-		student.setRollNumber(stu.getRollNumber());
 		System.out.println(stu);
+		Student student = studentRepository.save(stu);
 		return ResponseEntity.ok(student);
 		
 	}
