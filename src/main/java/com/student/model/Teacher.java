@@ -1,9 +1,26 @@
 package com.student.model;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="Teacher2")
 public class Teacher {
 	private String name;
 	private int age;
 	private String subject;
+	@jakarta.persistence.Id
+	private int Id;
+	
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -31,17 +48,18 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [name=" + name + ", age=" + age + ", subject=" + subject + "]";
+		return "Teacher [Id="+Id+",name=" + name + ", age=" + age + ", subject=" + subject + "]";
 	}
 
 
 	
 	
-	public Teacher(String name, int age, String subject) {
+	public Teacher(String name, int age, String subject,int Id) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.subject = subject;
+		this.Id = Id;
 	}
 
 	public Teacher() {
