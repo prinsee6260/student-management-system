@@ -16,7 +16,7 @@ import com.student.repository.StudentRepository;
 @RestController
 public class StudentController {
 	private StudentRepository studentRepository;
-	
+	// depency injection jn hmlg ko koe object apne class use
 	public StudentController(StudentRepository studentRepository) {
  		super();
 		this.studentRepository = studentRepository;
