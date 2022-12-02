@@ -1,6 +1,7 @@
 package com.student.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -9,8 +10,9 @@ import jakarta.persistence.Table;
 public class Student {
 	private String name;
 	@Id
+	@GeneratedValue
 	private int id;
-	private int rollNumber;
+	private Integer rollNumber;
 
 	public String getName() {
 		return name;
@@ -28,11 +30,11 @@ public class Student {
 		this.id = id;
 	}
 
-	public int getRollNumber() {
+	public Integer getRollNumber() {
 		return rollNumber;
 	}
 
-	public void setRollNumber(int rollNumber) {
+	public void setRollNumber(Integer rollNumber) {
 		this.rollNumber = rollNumber;
 	}
 
@@ -41,7 +43,7 @@ public class Student {
 		return "Student [name=" + name + ", id=" + id + ", rollNumber=" + rollNumber + "]";
 	}
 
-	public Student(String name, int id, int rollNumber) {
+	public Student(String name, int id, Integer rollNumber) {
 		super();
 		this.name = name;
 		this.id = id;
