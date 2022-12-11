@@ -1,18 +1,45 @@
 package com.student.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="student2")
+@Table(name = "student2")
 public class Student {
 	private String name;
 	@Id
 	@GeneratedValue
 	private int id;
+	private String classs;
 	private Integer rollNumber;
+	private int age;
+	@ManyToMany
+	@JoinTable(name = "Student_Teacher", joinColumns = { @JoinColumn(name = "Student_Id") }, inverseJoinColumns = {
+			@JoinColumn(name = "Teacher_Id") })
+	private Set<Teacher> teachers;
+
+	public int getAge() {
+		return age;
+	}
+
+	public Set<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(Set<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	public String getName() {
 		return name;
@@ -38,22 +65,33 @@ public class Student {
 		this.rollNumber = rollNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [name=" + name + ", id=" + id + ", rollNumber=" + rollNumber + "]";
+	public String getClasss() {
+		return classs;
 	}
 
-	public Student(String name, int id, Integer rollNumber) {
+	public void setClasss(String classs) {
+		this.classs = classs;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", classs=" + classs + ", id=" + id + ", rollNumber=" + rollNumber + ", age="
+				+ age + ", teachers=" + teachers + "]";
+	}
+
+	public Student(String name, String classs, int id, Integer rollNumber, int age, Set<Teacher> teachers) {
 		super();
 		this.name = name;
+		this.classs = classs;
 		this.id = id;
 		this.rollNumber = rollNumber;
+		this.age = age;
+		this.teachers = teachers;
 	}
 
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 
-} 
+}

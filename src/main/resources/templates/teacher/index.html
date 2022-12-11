@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
-<title>student index</title>
+<title>teacher index</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -21,6 +21,7 @@ create
       <th scope="col">subject</th>
       <th scope="col">age</th>
       <th scope="col">name</th>
+      <th scope="col">action</th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,11 @@ create
       <td th:text="${Emp.subject}"></td>
       <td th:text="${Emp.age}"></td>
       <td th:text="${Emp.name}"></td>
+      <td>
+      <a class="btn btn-danger" th:href="@{'/teachers/'+${Emp.Id}+'/delete'}">
+      delete
+      </a>
+      </td>
     </tr>
   </tbody>
 </table>

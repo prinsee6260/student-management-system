@@ -9,17 +9,15 @@
 </head>
 <body>
 	<h1>student index</h1>
-	<a class="btn btn-danger" th:href="@{/employees/form}">
-create
-</a>
-	
+	<a class="btn btn-danger" th:href="@{/students/form}"> create </a>
+
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">id</th>
 				<th scope="col">name</th>
 				<th scope="col">Rollnumber</th>
-				
+
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +25,10 @@ create
 				<td th:text="${Student.id}"></td>
 				<td th:text="${Student.name}"></td>
 				<td th:text="${Student.rollNumber}"></td>
+				<a class="btn btn-danger"
+					th:href="@{'/students/'+${Student.Id}+'/delete'}"> delete </a>
+				<a class="btn btn-warning"
+					th:href="@{'/students/'+${Student.Id}+'/update'}"> update </a>
 			</tr>
 		</tbody>
 	</table>

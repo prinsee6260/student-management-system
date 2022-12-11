@@ -15,6 +15,7 @@ public class Teacher {
 	@GeneratedValue
 	private int Id;
 	
+	
 
 	public int getId() {
 		return Id;

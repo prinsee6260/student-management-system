@@ -14,6 +14,8 @@
 <form class="form" method="post" 
 th:action="@{/students/create}"
 th:object="${students}">
+
+<input th:field="*{Id}"type="hidden" class="form-control" id="Id" placeholder="enter Id">
 <div class="mb-3">
   <label for="RollNumber" class="form-label"> RollNumber</label>
   <input th:field="*{rollNumber}"type="text" class="form-control" id="RollNumber" placeholder="enter RollNumber">
