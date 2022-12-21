@@ -1,12 +1,14 @@
 package com.student.model;
 
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Teacher2")
+@Table(name = "Teacher2")
 public class Teacher {
 	private String name;
 	private Integer age;
@@ -14,8 +16,17 @@ public class Teacher {
 	@jakarta.persistence.Id
 	@GeneratedValue
 	private int Id;
+	@ManyToMany
 	
-	
+	private Set<Student> students;
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 
 	public int getId() {
 		return Id;
@@ -49,20 +60,19 @@ public class Teacher {
 		this.subject = subject;
 	}
 
-	@Override
-	public String toString() {
-		return "Teacher [Id="+Id+",name=" + name + ", age=" + age + ", subject=" + subject + "]";
-	}
-
-
-	
-	
-	public Teacher(String name, int age, String subject,int Id) {
+	public Teacher(String name, Integer age, String subject, int id, Set<Student> students) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.subject = subject;
-		this.Id = Id;
+		Id = id;
+		this.students = students;
+	}
+
+	@Override
+	public String toString() {
+		return "Teacher [name=" + name + ", age=" + age + ", subject=" + subject + ", Id=" + Id + ", students="
+				+ students + "]";
 	}
 
 	public Teacher() {

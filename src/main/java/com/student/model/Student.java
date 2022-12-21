@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +25,17 @@ public class Student {
 	@JoinTable(name = "Student_Teacher", joinColumns = { @JoinColumn(name = "Student_Id") }, inverseJoinColumns = {
 			@JoinColumn(name = "Teacher_Id") })
 	private Set<Teacher> teachers;
+	@OneToMany(mappedBy ="student")
+	private Set<Marks>marks;
+
+	
+	public Set<Marks> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Set<Marks> marks) {
+		this.marks = marks;
+	}
 
 	public int getAge() {
 		return age;
@@ -73,10 +85,11 @@ public class Student {
 		this.classs = classs;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Student [name=" + name + ", classs=" + classs + ", id=" + id + ", rollNumber=" + rollNumber + ", age="
-				+ age + ", teachers=" + teachers + "]";
+		return "Student [name=" + name + ", id=" + id + ", classs=" + classs + ", rollNumber=" + rollNumber + ", age="
+				+ age + ", teachers=" + teachers + ", marks=" + marks + "]";
 	}
 
 	public Student(String name, String classs, int id, Integer rollNumber, int age, Set<Teacher> teachers) {
