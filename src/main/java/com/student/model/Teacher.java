@@ -11,6 +11,8 @@ import jakarta.persistence.Table;
 @Table(name = "Teacher2")
 public class Teacher {
 	private String name;
+
+	private String teacherId;
 	private Integer age;
 	private String subject;
 	@jakarta.persistence.Id
@@ -73,6 +75,14 @@ public class Teacher {
 	public String toString() {
 		return "Teacher [name=" + name + ", age=" + age + ", subject=" + subject + ", Id=" + Id + ", students="
 				+ students + "]";
+	}
+
+	public String getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
 	}
 
 	public Teacher() {

@@ -20,7 +20,7 @@ import com.student.repository.StudentRepository;
 @RestController
 public class StudentController {
 	private StudentRepository studentRepository;
-	@Autowired
+	
 	private MarksRepository markrepository;
 
 	// depency injection jn hmlg ko koe object apne class use

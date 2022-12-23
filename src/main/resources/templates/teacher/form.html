@@ -1,35 +1,52 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
-<title>student form</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
+    <title>student form</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
 </head>
 <body>
-	<h2>
-	create student
-	</h2>
-<form class="form" method="post" 
-th:action="@{/teacher/create}"
-th:object="${teacher}">
-
-<div class="mb-3">
-  <label for="Age" class="form-label"> Age</label>
-  <input th:field="*{age}"type="text" class="form-control" id="Age" placeholder="enter Age">
-</div>
-<div class="mb-3">
-  <label for="Subject" class="form-label"> Subject</label>
-  <input th:field="*{subject}"type="text" class="form-control" id="Subject" placeholder="enter Subject">
-</div>
-<div class="mb-3">
-  <label for="Name" class="form-label">Name</label>
-  <input th:field="*{name}" type="text" class="form-control" id="Name" placeholder="enter name">
-</div>
-<button  type = "submit" class="btn btn-success">
-submit
-</button>
+<h2>
+    create teacher
+</h2>
+<form class="form" method="post"
+      th:action="@{/teacher/create}"
+      th:object="${teacher}">
+    <input th:field="*{id}" type="hidden" >
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input th:field="*{name}" type="text" class="form-control" id="Name" placeholder="enter name">
+    </div>
+    <div class="mb-3">
+        <label for="Age" class="form-label"> Age</label>
+        <input th:field="*{age}" type="text" class="form-control" id="Age" placeholder="enter Age">
+    </div>
+    <div class="mb-3">
+        <label for="teacherId" class="form-label"> Teacher Id</label>
+        <input th:field="*{teacherId}" type="text" class="form-control" id="teacherId" placeholder="enter teacher id">
+    </div>
+    <div class="mb-3">
+        <label for="Subject" class="form-label"> Subject</label>
+        <select th:field="*{subject}" type="text" class="form-control" id="Subject" placeholder="enter Subject">
+            <option value="MATHS" >MATHS</option>
+            <option value="BIOLOGY">BIOLOGY</option>
+            <option value="HINDI">HINDI</option>
+            <option value="ENGLISH">ENGLISH</option>
+            <option value="SCIENCE 10th">SCIENCE 10th</option>
+            <option value="PHYSICS">PHYSICS</option>
+            <option value="CHEMISTRY">CHEMISTRY</option>
+            <option value="HISTORY">HISTORY</option>
+            <option value="SANSKRIT">SANSKRIT</option>
+            <option value="CIVICS">CIVICS</option>
+            <option value="GEOGRAPHY">GEOGRAPHY</option>
+            <option value="S.ST">S.ST</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">
+        submit
+    </button>
 </form>
 
 </body>

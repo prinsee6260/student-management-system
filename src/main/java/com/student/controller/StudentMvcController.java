@@ -51,4 +51,14 @@ public class StudentMvcController {
 		return "students/form";
 
 	}
+
+
+	@RequestMapping(value = "/students/{Id}/view", method = RequestMethod.GET)
+	public String studentsView(@PathVariable int Id, Model model) {
+		System.out.println(Id);
+		Student student = studentRepository.findById(Id).get();
+		model.addAttribute("students", student);
+		return "students/view";
+
+	}
 }

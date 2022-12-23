@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>
-	create teacher
+	create student
 	</h2>
 <form class="form" method="post" 
 th:action="@{/students/create}"
@@ -20,11 +20,22 @@ th:object="${students}">
   <label for="RollNumber" class="form-label"> RollNumber</label>
   <input th:field="*{rollNumber}"type="text" class="form-control" id="RollNumber" placeholder="enter RollNumber">
 </div>
-<div class="mb-3">
-  <label for="Name" class="form-label">Name</label>
-  <input th:field="*{name}" type="text" class="form-control" id="Name" placeholder="enter name">
-</div>
-<button  type = "submit" class="btn btn-success">
+	<div class="mb-3">
+		<label for="Name" class="form-label">Name</label>
+		<input th:field="*{name}" type="text" class="form-control" id="Name" placeholder="enter name">
+	</div>
+
+	<div class="mb-3">
+		<label for="age" class="form-label">Age</label>
+		<input th:field="*{age}" type="text" class="form-control" id="age" placeholder="enter age">
+	</div>
+
+	<div class="mb-3">
+		<label for="classs" class="form-label">Class</label>
+		<input th:field="*{classs}" type="text" class="form-control" id="classs" placeholder="enter class">
+	</div>
+
+	<button  type = "submit" class="btn btn-success">
 submit
 </button>
 </form>
