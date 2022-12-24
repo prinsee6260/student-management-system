@@ -1,41 +1,56 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
-<title>student index</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
+    <title>Student index</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
 </head>
 <body>
-	<h1>student index</h1>
-	<a class="btn btn-danger" th:href="@{/students/form}"> create </a>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h1>Student index</h1>
+            <a class="btn btn-danger" th:href="@{/students/form}"> Create </a>
+            <br><br>
+            <table class="table text-center table-bordered table-responsive table-hover table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Roll number</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="Student:${students}">
+                    <td th:text="${Student.id}"></td>
+                    <td th:text="${Student.name}"></td>
+                    <td th:text="${Student.classs}"></td>
+                    <td th:text="${Student.rollNumber}"></td>
+                    <td>
+                        <a class="btn btn-danger"
+                           th:href="@{'/students/'+${Student.Id}+'/delete'}"> Delete </a>
+                        <a class="btn btn-warning"
+                           th:href="@{'/students/'+${Student.Id}+'/update'}"> Update </a>
+                        <a class="btn btn-warning" th:if="${!#strings.isEmpty(teacherId)}"
+                           th:href="@{'/students/'+${Student.Id}+'/teachers/'+${teacherId}+'/marks'}"> Give marks </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">id</th>
-				<th scope="col">name</th>
-				<th scope="col">Rollnumber</th>
-
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="Student:${students}">
-				<td th:text="${Student.id}"></td>
-				<td th:text="${Student.name}"></td>
-				<td th:text="${Student.rollNumber}"></td>
-				<a class="btn btn-danger"
-					th:href="@{'/students/'+${Student.Id}+'/delete'}"> delete </a>
-				<a class="btn btn-warning"
-					th:href="@{'/students/'+${Student.Id}+'/update'}"> update </a>
-			</tr>
-		</tbody>
-	</table>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin="anonymous"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

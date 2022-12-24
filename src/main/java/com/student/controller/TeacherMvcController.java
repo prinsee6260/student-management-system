@@ -61,6 +61,7 @@ public class TeacherMvcController {
 	@RequestMapping(value = "/teacher/{Id}/Students", method = RequestMethod.GET)
 	public String studentshow(Model model, @PathVariable int Id) {
 		model.addAttribute("students", studenRepository.findAll());
+		model.addAttribute("teacherId", Id);
 		return "students/index";
 	}
 

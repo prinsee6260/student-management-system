@@ -15,6 +15,7 @@
         <div class="col-12">
             <div class="offset-3 col-md-6">
                 <div class="card">
+                    <div class="card-title"><h3 class="m-2">Student Details</h3></div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label"> RollNumber</label>
@@ -33,6 +34,27 @@
                         <div class="mb-3">
                             <label class="form-label">Class</label>
                             <span th:text="${students.classs}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <h4>Quarterly</h4>
+                            <div th:each="mark : ${students.marks}">
+                                <span th:if="${#strings.equalsIgnoreCase(mark.examination, 'Quarterly')}"
+                                      th:text="${mark.marksObtained} + ' marks out of '+${mark.maximumMarks}+' in '+${mark.subject}"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4>Half Yearly</h4>
+                            <div th:each="mark : ${students.marks}">
+                                <span th:if="${#strings.equalsIgnoreCase(mark.examination, 'Half Yearly')}"
+                                      th:text="${mark.marksObtained} + ' marks out of '+${mark.maximumMarks}+' in '+${mark.subject}"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4>Final</h4>
+                            <div th:each="mark : ${students.marks}">
+                                <span th:if="${#strings.equalsIgnoreCase(mark.examination, 'Final')}"
+                                      th:text="${mark.marksObtained} + ' marks out of '+${mark.maximumMarks}+' in '+${mark.subject}"></span>
+                            </div>
                         </div>
                     </div>
                 </div>

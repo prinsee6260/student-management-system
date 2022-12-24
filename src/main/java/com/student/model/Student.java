@@ -1,15 +1,9 @@
 package com.student.model;
 
+import java.security.AllPermission;
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "student2")
@@ -25,8 +19,8 @@ public class Student {
 	@JoinTable(name = "Student_Teacher", joinColumns = { @JoinColumn(name = "Student_Id") }, inverseJoinColumns = {
 			@JoinColumn(name = "Teacher_Id") })
 	private Set<Teacher> teachers;
-	@OneToMany(mappedBy ="student")
-	private Set<Marks>marks;
+	@OneToMany(mappedBy ="student",cascade = CascadeType.ALL)
+	private Set<Marks> marks;
 
 	
 	public Set<Marks> getMarks() {

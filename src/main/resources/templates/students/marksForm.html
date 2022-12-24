@@ -1,0 +1,52 @@
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <title>teacher form</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h2>
+                Give Marks
+            </h2>
+            <form class="form" method="post"
+                  th:action="@{'/students/'+${studentId}+'/marks'}"
+                  th:object="${marks}">
+
+                <input th:field="*{Id}" type="hidden" class="form-control" id="Id" placeholder="enter Id">
+                <div class="mb-3">
+                    <label for="marksObtained" class="form-label"> Marks Obtained out of <span
+                            th:text="${marks.maximumMarks}"></span> in <span th:text="${marks.subject}"></span></label>
+                    <input th:field="*{marksObtained}" type="text" class="form-control" id="marksObtained"
+                           placeholder="enter marksObtained">
+                </div>
+                <input th:field="*{maximumMarks}" type="hidden">
+                <input th:field="*{subject}" type="hidden">
+                <div class="mb-3">
+                    <label for="examination" class="form-label">Examination</label>
+                    <select th:field="*{examination}" class="form-control" id="examination"
+                            placeholder="enter examination">
+                        <option value="QUARTERLY">QUARTERLY</option>
+                        <option value="HALF YEARLY">HALF YEARLY</option>
+                        <option value="FINAL">FINAL</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Submit
+                </button>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+</body>
+</html>

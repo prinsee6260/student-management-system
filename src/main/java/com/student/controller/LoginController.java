@@ -2,12 +2,12 @@ package com.student.controller;
 
 import com.student.model.Student;
 import com.student.model.Teacher;
-import com.student.repository.StudentRepository;
-import com.student.repository.TeacherRepository;
+import com.student.service.LoginService;
 import com.student.vo.LoginVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +18,11 @@ import java.util.Optional;
 @RequestMapping("/login")
 public class LoginController {
 
-    @Autowired
-    private StudentRepository studentRepo;
-    @Autowired
-    private TeacherRepository teacherRepo;
+    private final LoginService loginService;
+
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     @GetMapping
     public String login(Model model) {
@@ -33,21 +34,23 @@ public class LoginController {
 
     @PostMapping("/authenticate")
     public String authenticate(Model model, LoginVo loginVo) {
-        if (loginVo.getDesg().equalsIgnoreCase("teacher")) {
-            Optional<Teacher> teacher
-                    = teacherRepo.findByTeacherId(loginVo.getId());
-            if (teacher.isPresent()) {
-                return "redirect:/students/index";
-            }
-        } else if (loginVo.getDesg().equalsIgnoreCase("student")) {
-            Optional<Student> student
-                    = studentRepo.findByRollNumber(loginVo.getId());
-            if (student.isPresent()) {
-                return "redirect:/students/" + student.get().getId() + "/view";
-            }
+        String res = loginService.authenticate(loginVo,model);
+        model.addAttribute("isFound", !"login".equalsIgnoreCase(res));
+        return res;
+    }
+
+    @GetMapping("/register")
+    public String register(Model model, HttpServletRequest request) {
+        String page = null;
+        String desg = (String) request.getParameter("desg");
+        if("teacher".equalsIgnoreCase(desg)){
+            page = "redirect:/teacher/form";
+        }else if("student".equalsIgnoreCase(desg)){
+            page = "redirect:/students/form";
+        }else{
+            page = "redirect:/students/form";
         }
-        model.addAttribute("isFound", false);
-        return "login";
+        return page;
     }
 
 }

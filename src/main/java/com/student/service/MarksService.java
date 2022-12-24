@@ -1,7 +1,11 @@
 package com.student.service;
 
-public class MarksService {
-	
-	
+import com.student.model.Marks;
+
+public interface MarksService {
+
+	Marks getMarksByTeacherId(int teacherId);
+
+	public boolean giveMarks(int id, Marks marks);
 
 }
